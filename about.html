@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About AttendEase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            background-color: #F4F7FB;
+            color: #24364B;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #172B4D;
+            color: white;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(23, 43, 77, 0.25);
+            flex-wrap: wrap;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .menu-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            background-color: #3B6B96;
+        }
+
+        /* ========== ABOUT ========== */
+        .about {
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
+
+        .about h1 {
+            font-size: 36px;
+            color: #172B4D;
+        }
+
+        .about h1 span {
+            color: #3B6B96;
+        }
+
+        .intro {
+            max-width: 650px;
+            margin: 20px auto;
+            line-height: 1.8;
+            font-size: 17px;
+            color: #526579;
+        }
+
+        .about-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 0 20px 40px;
+        }
+
+        .about-card {
+            background-color: white;
+            width: 230px;
+            padding: 25px;
+            border: 1px solid #DCE5EF;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(23, 43, 77, 0.08);
+        }
+
+        .about-card:hover {
+            box-shadow: 0 8px 20px rgba(23, 43, 77, 0.3);
+        }
+
+        .about-card h3 {
+            color: #243F60;
+        }
+
+        .about-card p {
+            color: #526579;
+            line-height: 1.6;
+        }
+
+        /* ========== WHY SECTION ========== */
+        .why-section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .why-content {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .why-image {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .why-image img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .why-content h2 {
+            color: #172B4D;
+        }
+
+        .why-content p {
+            color: #526579;
+            line-height: 1.7;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .benefit span {
+            min-width: 25px;
+            height: 25px;
+            background-color: #D1FAE5;
+            color: #047857;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .benefit p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #172B4D;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #3B6B96;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            text-align: center;
+            background-color: #172B4D;
+            color: white;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: #DCE7F3;
+            margin: 4px 0;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #172B4D;
+                margin-top: 12px;
+                padding: 10px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 15px;
+                border-radius: 0;
+                width: 100%;
+            }
+
+            .about h1 {
+                font-size: 28px;
+            }
+
+            .intro {
+                font-size: 15px;
+                padding: 0 15px;
+            }
+
+            .about-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .why-section {
+                flex-direction: column;
+            }
+
+            .why-image img {
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar h2 {
+                font-size: 18px;
+            }
+
+            .about h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2>AttendEase</h2>
+        <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home 🏠</a>
+            <a href="about.html">About ℹ️</a>
+            <a href="attendance.html">Attendance 📋</a>
+            <a href="contact.html">Contact 📞</a>
+            <a href="login.html" id="authLink">Login</a>
+        </div>
+    </nav>
+
+    <section class="about">
+        <h1>About <span>AttendEase</span></h1>
+        <p class="intro">
+            AttendEase is a simple and user-friendly attendance management system
+            designed to make student attendance easier, organized, and fully date-wise.
+        </p>
+
+        <div class="about-container">
+            <div class="about-card">
+                <h3>🎯 Our Aim</h3>
+                <p>To make attendance management simple, quick, and date-aware for teachers and students.</p>
+            </div>
+            <div class="about-card">
+                <h3>📅 Date-Wise Records</h3>
+                <p>Every date has its own snapshot — view past days, mark future days, all from one page.</p>
+            </div>
+            <div class="about-card">
+                <h3>⏰ Why AttendEase?</h3>
+                <p>It saves time, reduces manual work, and keeps records organized across all dates.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-section">
+        <div class="why-content">
+            <h2>Designed Around Simplicity</h2>
+            <p>We focus on creating a smooth experience for everyday attendance activities.</p>
+
+            <div class="benefit">
+                <span>✓</span>
+                <p><strong>Simple:</strong> Easy navigation and user-friendly design.</p>
+            </div>
+            <div class="benefit">
+                <span>✓</span>
+                <p><strong>Efficient:</strong> Manage attendance without paperwork.</p>
+            </div>
+            <div class="benefit">
+                <span>✓</span>
+                <p><strong>Organized:</strong> Keep student info + history in one place.</p>
+            </div>
+            <div class="benefit">
+                <span>✓</span>
+                <p><strong>Accessible:</strong> Works on desktop, tablet and mobile.</p>
+            </div>
+
+            <a href="attendance.html" class="btn">Get Started</a>
+        </div>
+
+        <div class="why-image">
+            <img src="why.png" alt="Attendance illustration">
+        </div>
+    </section>
+
+    <footer>
+        <h3>AttendEase</h3>
+        <p>Making attendance simple and organized.</p>
+        <p>&copy; 2026 AttendEase. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("open");
+        }
+
+        (function () {
+            const user = JSON.parse(localStorage.getItem("currentUser"));
+            const authLink = document.getElementById("authLink");
+
+            if (user && authLink) {
+                authLink.textContent = "Logout (" + user.name + ")";
+                authLink.href = "#";
+                authLink.onclick = function () {
+                    localStorage.removeItem("currentUser");
+                    window.location.href = "index.html";
+                    return false;
+                };
+            }
+        })();
+    </script>
+
+</body>
+</html>
