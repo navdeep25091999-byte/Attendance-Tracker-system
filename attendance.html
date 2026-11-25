@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracker | AttendEase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="attendance.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            background-color: #F4F6F9;
+            color: #334155;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #172B4D;
+            color: white;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(23, 43, 77, 0.25);
+            flex-wrap: wrap;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .menu-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            background-color: #3B6B96;
+        }
+
+        /* ========== USER BAR ========== */
+        #userBar {
+            background: #E8EEF5;
+            padding: 12px 20px;
+            text-align: center;
+            color: #243B53;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        #userBar span {
+            color: #3B6B96;
+        }
+
+        /* ========== DATE PICKER ========== */
+        .date-bar {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 15px;
+            border: 1px solid #CBD5E1;
+            box-shadow: 0 4px 12px rgba(23, 43, 77, 0.08);
+        }
+
+        .date-bar label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #526579;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        #attendanceDate {
+            width: 100%;
+            max-width: 280px;
+            padding: 12px 15px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            color: #243B53;
+            border: 2px solid #CBD5E1;
+            border-radius: 10px;
+            background: #F8FAFC;
+            cursor: pointer;
+        }
+
+        #attendanceDate:focus {
+            outline: none;
+            border-color: #3B6B96;
+            box-shadow: 0 0 0 4px rgba(59, 107, 150, 0.15);
+        }
+
+        .date-hint {
+            font-size: 12px;
+            color: #94A3B8;
+            margin-top: 8px;
+        }
+
+        /* ========== DROPDOWN ========== */
+        .status-label {
+            display: block;
+            margin: 10px auto 5px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #526579;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #statusFilter {
+            display: block;
+            margin: 5px auto 30px;
+            padding: 12px 45px 12px 18px;
+            width: 240px;
+            max-width: 100%;
+            background-color: #FFFFFF;
+            color: #243B53;
+            border: 2px solid #CBD5E1;
+            border-radius: 10px;
+            font-family: "Montserrat", sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23243B53' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 14px;
+        }
+
+        #statusFilter:focus {
+            outline: none;
+            border-color: #486581;
+            box-shadow: 0 0 0 4px rgba(72, 101, 129, 0.15);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #172B4D;
+                margin-top: 12px;
+                padding: 10px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 15px;
+                border-radius: 0;
+                width: 100%;
+            }
+
+            .date-bar {
+                margin: 15px 12px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2>AttendEase</h2>
+        <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home 🏠</a>
+            <a href="about.html">About ℹ️</a>
+            <a href="attendance.html">Attendance 📋</a>
+            <a href="contact.html">Contact 📞</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+    </nav>
+
+    <div id="userBar">
+        👋 Welcome, <span id="userName"></span>!
+        <button
+            onclick="resetAll()"
+            style="margin-left:15px;padding:6px 14px;background:#B91C1C;color:white;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;"
+        >
+            Reset All
+        </button>
+    </div>
+
+    <div class="date-bar">
+        <label for="attendanceDate">📅 Select Date</label>
+        <input type="date" id="attendanceDate" onchange="changeDate()">
+        <p class="date-hint">
+            Attendance is recorded per day. Change the date to view or edit past records.
+        </p>
+    </div>
+
+    <h1 id="mark">Mark your Attendance Here:</h1>
+
+    <div class="cards">
+        <div class="container">
+            <h1 id="head">Smart Attendance Tracker</h1>
+
+            <div class="form">
+                <input type="text" id="search" placeholder="Search by name or roll number">
+                <button id="btn" onclick="search()">Search</button>
+
+                <label>Enter Your Name:</label>
+                <input type="text" id="namee" placeholder="Enter your name">
+
+                <label>Enter Your Roll Number:</label>
+                <input type="text" id="rollno" placeholder="Enter your roll number">
+
+                <button onclick="addStudent()">Add Student</button>
+            </div>
+
+            <label class="status-label" for="statusFilter">Filter by Status</label>
+            <select id="statusFilter" onchange="showStudents()">
+                <option value="all">All Students</option>
+                <option value="present">Present</option>
+                <option value="absent">Absent</option>
+                <option value="notMarked">Not Marked</option>
+            </select>
+
+            <div id="studentList"></div>
+        </div>
+
+        <div id="count"></div>
+        <div id="searchedInfo"></div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("open");
+        }
+    </script>
+    <script src="attendance.js"></script>
+</body>
+</html>

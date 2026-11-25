@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | AttendEase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+            background-color: #F4F7FB;
+            color: #24364B;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #172B4D;
+            color: white;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(23, 43, 77, 0.25);
+            flex-wrap: wrap;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .menu-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            background-color: #3B6B96;
+        }
+
+        /* ========== HEADING ========== */
+        .page-heading {
+            text-align: center;
+            padding: 45px 20px 20px;
+        }
+
+        .page-heading h1 {
+            color: #172B4D;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .page-heading span {
+            color: #3B6B96;
+        }
+
+        .page-heading p {
+            color: #526579;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1050px;
+            margin: 30px auto 60px;
+            padding: 0 20px;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 280px;
+            background-color: #172B4D;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .contact-info h2 {
+            margin-top: 0;
+        }
+
+        .contact-info p {
+            color: #DCE7F3;
+            line-height: 1.8;
+        }
+
+        .info-item {
+            margin-top: 25px;
+        }
+
+        .info-item h3 {
+            margin: 0 0 6px;
+            font-size: 17px;
+        }
+
+        .info-item p {
+            margin: 0;
+        }
+
+        .contact-form {
+            flex: 1.3;
+            min-width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #E1E7EF;
+            box-shadow: 0 4px 15px rgba(23, 43, 77, 0.08);
+        }
+
+        .contact-form h2 {
+            color: #172B4D;
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #243F60;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #CBD5E1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #3B6B96;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 107, 150, 0.15);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #172B4D;
+            color: white;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #3B6B96;
+        }
+
+        /* ========== SUCCESS MESSAGE ========== */
+        #formMessage {
+            display: none;
+            margin-top: 20px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #D1FAE5;
+            color: #047857;
+            border-left: 5px solid #047857;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        #formMessage.show {
+            display: flex;
+            animation: slideUp 0.45s ease forwards;
+        }
+
+        #formMessage .icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 26px;
+            height: 26px;
+            background-color: #047857;
+            color: white;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            text-align: center;
+            background-color: #172B4D;
+            color: white;
+            padding: 25px;
+        }
+
+        footer p {
+            color: #DCE7F3;
+            margin: 4px 0;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #172B4D;
+                margin-top: 12px;
+                padding: 10px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 15px;
+                border-radius: 0;
+                width: 100%;
+            }
+
+            .page-heading h1 {
+                font-size: 28px;
+            }
+
+            .contact-container {
+                flex-direction: column;
+                padding: 0 15px;
+            }
+
+            .contact-info,
+            .contact-form {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar h2 {
+                font-size: 18px;
+            }
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2>AttendEase</h2>
+        <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home 🏠</a>
+            <a href="about.html">About ℹ️</a>
+            <a href="attendance.html">Attendance 📋</a>
+            <a href="contact.html">Contact 📞</a>
+            <a href="login.html" id="authLink">Login</a>
+        </div>
+    </nav>
+
+    <section class="page-heading">
+        <h1>Contact <span>Us</span></h1>
+        <p>Have a question or suggestion? We'd love to hear from you.</p>
+    </section>
+
+    <section class="contact-container">
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>Need help using AttendEase? Send us your questions or feedback.</p>
+
+            <div class="info-item">
+                <h3>📧 Email Us</h3>
+                <p>support@attendease.ca</p>
+            </div>
+            <div class="info-item">
+                <h3>☎️ Call Us</h3>
+                <p>+91 987654321</p>
+            </div>
+            <div class="info-item">
+                <h3>📍 Working Hours</h3>
+                <p>Monday - Friday<br>9:00 AM - 5:00 PM</p>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" placeholder="Enter message subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" placeholder="Write your message here..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+
+                <div id="formMessage">
+                    <span class="icon">✓</span>
+                    <span id="formMessageText">Thank you! Your message has been sent.</span>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <h3>AttendEase</h3>
+        <p>Making attendance simple and organized.</p>
+        <p>&copy; 2026 AttendEase. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("open");
+        }
+
+        (function () {
+            const user = JSON.parse(localStorage.getItem("currentUser"));
+            const authLink = document.getElementById("authLink");
+
+            if (user && authLink) {
+                authLink.textContent = "Logout (" + user.name + ")";
+                authLink.href = "#";
+                authLink.onclick = function () {
+                    localStorage.removeItem("currentUser");
+                    window.location.href = "index.html";
+                    return false;
+                };
+            }
+        })();
+
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const box = document.getElementById("formMessage");
+            const text = document.getElementById("formMessageText");
+            const name = document.getElementById("name").value.trim();
+
+            text.textContent = name
+                ? "Thank you, " + name + "! Your message has been sent."
+                : "Thank you! Your message has been sent.";
+
+            box.classList.add("show");
+            this.reset();
+
+            setTimeout(function () {
+                box.classList.remove("show");
+            }, 5000);
+        });
+    </script>
+
+</body>
+</html>

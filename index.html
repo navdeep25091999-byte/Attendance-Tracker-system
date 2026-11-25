@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AttendEase - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            background-color: #F4F7FB;
+            color: #24364B;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #172B4D;
+            color: white;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(23, 43, 77, 0.25);
+            flex-wrap: wrap;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            font-size: 22px;
+            color: white;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .menu-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            background-color: #3B6B96;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 60px 10% 40px;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            max-width: 520px;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: #E8EEF5;
+            color: #3B6B96;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .content h1 {
+            font-size: 38px;
+            color: #172B4D;
+            line-height: 1.2;
+        }
+
+        .content h1 span {
+            color: #3B6B96;
+        }
+
+        .content h3 {
+            color: #3B526B;
+            margin-top: 8px;
+        }
+
+        .content p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #526579;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #172B4D;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 10px;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: #3B6B96;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #172B4D;
+            border: 2px solid #172B4D;
+        }
+
+        .btn-outline:hover {
+            background-color: #172B4D;
+            color: white;
+        }
+
+        .image img {
+            height: 330px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        /* ========== DASHBOARD ========== */
+        .dashboard {
+            max-width: 1050px;
+            margin: 20px auto 50px;
+            padding: 0 20px;
+        }
+
+        .welcome-bar {
+            background: linear-gradient(135deg, #172B4D, #3B6B96);
+            color: white;
+            padding: 24px 30px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .welcome-bar h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .welcome-bar p {
+            margin: 4px 0 0;
+            color: #DCE7F3;
+            font-size: 14px;
+        }
+
+        .welcome-bar a {
+            background: white;
+            color: #172B4D;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .welcome-bar a:hover {
+            background: #E8EEF5;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            border: 1px solid #DCE5EF;
+            box-shadow: 0 4px 12px rgba(23, 43, 77, 0.08);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #526579;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .stat-card.total .stat-value {
+            color: #172B4D;
+        }
+
+        .stat-card.present .stat-value {
+            color: #047857;
+        }
+
+        .stat-card.absent .stat-value {
+            color: #B91C1C;
+        }
+
+        /* ========== QUICK ACTIONS ========== */
+        .actions {
+            max-width: 1050px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        .actions h2 {
+            color: #172B4D;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .action-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .action-card {
+            flex: 1;
+            min-width: 220px;
+            background: white;
+            border: 1px solid #DCE5EF;
+            border-radius: 14px;
+            padding: 25px 20px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .action-card:hover {
+            box-shadow: 0 10px 24px rgba(23, 43, 77, 0.15);
+            border-color: #3B6B96;
+        }
+
+        .action-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .action-card h3 {
+            color: #172B4D;
+            font-size: 16px;
+            margin: 0 0 6px;
+        }
+
+        .action-card p {
+            color: #526579;
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ========== LATEST ========== */
+        .latest {
+            max-width: 1050px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .latest h2 {
+            color: #172B4D;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .latest-list {
+            background: white;
+            border-radius: 14px;
+            padding: 10px 20px;
+            border: 1px solid #DCE5EF;
+            box-shadow: 0 4px 12px rgba(23, 43, 77, 0.08);
+        }
+
+        .latest-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #E8EEF5;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .latest-item:last-child {
+            border-bottom: none;
+        }
+
+        .latest-name {
+            font-weight: 600;
+            color: #172B4D;
+            font-size: 15px;
+        }
+
+        .latest-roll {
+            color: #526579;
+            font-size: 13px;
+        }
+
+        .status-pill {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-pill.present {
+            background: #D1FAE5;
+            color: #047857;
+        }
+
+        .status-pill.absent {
+            background: #FEE2E2;
+            color: #B91C1C;
+        }
+
+        .status-pill.not-marked {
+            background: #E8EEF5;
+            color: #526579;
+        }
+
+        .empty-msg {
+            padding: 30px 20px;
+            text-align: center;
+            color: #526579;
+            font-size: 14px;
+        }
+
+        /* ========== FEATURES ========== */
+        .features {
+            text-align: center;
+            background-color: white;
+            padding: 60px 20px;
+        }
+
+        .features h2 {
+            color: #172B4D;
+            font-size: 24px;
+        }
+
+        .feature-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background-color: #F4F7FB;
+            border: 1px solid #DCE5EF;
+            width: 220px;
+            padding: 25px 15px;
+            border-radius: 12px;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 20px rgba(23, 43, 77, 0.3);
+        }
+
+        .feature-card h3 {
+            color: #243F60;
+        }
+
+        .feature-card p {
+            color: #526579;
+            line-height: 1.6;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            text-align: center;
+            background-color: #172B4D;
+            color: white;
+            padding: 25px;
+        }
+
+        footer p {
+            color: #DCE7F3;
+            margin: 4px 0;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #172B4D;
+                margin-top: 12px;
+                padding: 10px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 15px;
+                border-radius: 0;
+                width: 100%;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 6%;
+            }
+
+            .content h1 {
+                font-size: 28px;
+            }
+
+            .image img {
+                height: auto;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .welcome-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stat-value {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar h2 {
+                font-size: 18px;
+            }
+
+            .content h1 {
+                font-size: 24px;
+            }
+
+            .feature-card,
+            .stat-card,
+            .action-card {
+                width: 100%;
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2>AttendEase</h2>
+        <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home 🏠</a>
+            <a href="about.html">About ℹ️</a>
+            <a href="attendance.html">Attendance 📋</a>
+            <a href="contact.html">Contact 📞</a>
+            <a href="login.html" id="authLink">Login</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="content">
+            <span class="date-badge" id="todayDate">Loading...</span>
+            <h1 id="heroTitle">Welcome to <span>AttendEase!</span></h1>
+            <h3>Smart Attendance Management System</h3>
+            <p>
+                Manage student records and mark daily attendance easily.
+                Change the date to view any past day's attendance instantly.
+            </p>
+            <a href="attendance.html" class="btn">Get Started</a>
+            <a href="signup.html" class="btn btn-outline" id="signupBtn">Create Account</a>
+        </div>
+
+        <div class="image">
+            <img src="attend.png" alt="Attendance illustration">
+        </div>
+    </section>
+
+    <section class="dashboard" id="dashboardSection" style="display:none;">
+        <div class="welcome-bar">
+            <div>
+                <h2 id="welcomeMsg">Welcome back!</h2>
+                <p>Here's today's attendance overview.</p>
+            </div>
+            <a href="attendance.html">Open Attendance →</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card total">
+                <div class="stat-label">Total Students</div>
+                <div class="stat-value" id="totalCount">0</div>
+            </div>
+            <div class="stat-card present">
+                <div class="stat-label">Present Today</div>
+                <div class="stat-value" id="presentCount">0</div>
+            </div>
+            <div class="stat-card absent">
+                <div class="stat-label">Absent Today</div>
+                <div class="stat-value" id="absentCount">0</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="actions" id="actionsSection" style="display:none;">
+        <h2>Quick Actions</h2>
+        <div class="action-grid">
+            <a href="attendance.html" class="action-card">
+                <div class="action-icon">➕</div>
+                <h3>Add Student</h3>
+                <p>Register a new student.</p>
+            </a>
+            <a href="attendance.html" class="action-card">
+                <div class="action-icon">✅</div>
+                <h3>Mark Attendance</h3>
+                <p>Mark present or absent for any date.</p>
+            </a>
+            <a href="attendance.html" class="action-card">
+                <div class="action-icon">📅</div>
+                <h3>View Past Dates</h3>
+                <p>Change the date to view historical records.</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="latest" id="latestSection" style="display:none;">
+        <h2>Recent Students</h2>
+        <div class="latest-list" id="latestList"></div>
+    </section>
+
+    <section class="features">
+        <h2>Why Choose AttendEase?</h2>
+        <div class="feature-container">
+            <div class="feature-card">
+                <h3>📅 Date-Wise Tracking</h3>
+                <p>Each day's attendance is stored separately.</p>
+            </div>
+            <div class="feature-card">
+                <h3>✅ Quick Marking</h3>
+                <p>Mark present or absent in one click.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔍 Search</h3>
+                <p>Find any student instantly.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Live Stats</h3>
+                <p>Real-time counts per date.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h3>AttendEase</h3>
+        <p>Making attendance simple and organized.</p>
+        <p>&copy; 2026 AttendEase. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("open");
+        }
+
+        (function showDateBadge() {
+            const now = new Date();
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"];
+
+            document.getElementById("todayDate").textContent =
+                "📅 " + days[now.getDay()] + ", " +
+                now.getDate() + " " +
+                months[now.getMonth()] + " " +
+                now.getFullYear();
+        })();
+
+        function todayString() {
+            const d = new Date();
+            return d.getFullYear() + "-" +
+                String(d.getMonth() + 1).padStart(2, "0") + "-" +
+                String(d.getDate()).padStart(2, "0");
+        }
+
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const authLink = document.getElementById("authLink");
+
+        if (currentUser) {
+            authLink.textContent = "Logout (" + currentUser.name + ")";
+            authLink.href = "#";
+            authLink.onclick = function () {
+                localStorage.removeItem("currentUser");
+                window.location.href = "index.html";
+                return false;
+            };
+
+            document.getElementById("heroTitle").innerHTML =
+                "Welcome back, <span>" + currentUser.name.split(" ")[0] + "!</span>";
+            document.getElementById("signupBtn").style.display = "none";
+            document.getElementById("dashboardSection").style.display = "block";
+            document.getElementById("actionsSection").style.display = "block";
+            document.getElementById("latestSection").style.display = "block";
+            document.getElementById("welcomeMsg").textContent = "Hi " + currentUser.name + "! 👋";
+
+            const key = "students_" + currentUser.email;
+            const saved = localStorage.getItem(key);
+            const students = saved ? JSON.parse(saved) : [];
+            const today = todayString();
+
+            let present = 0;
+            let absent = 0;
+
+            for (let i = 0; i < students.length; i++) {
+                const att = students[i].attendance || {};
+                if (att[today] === "Present") present++;
+                if (att[today] === "Absent") absent++;
+            }
+
+            document.getElementById("totalCount").textContent = students.length;
+            document.getElementById("presentCount").textContent = present;
+            document.getElementById("absentCount").textContent = absent;
+
+            const listEl = document.getElementById("latestList");
+
+            if (students.length === 0) {
+                listEl.innerHTML =
+                    "<div class='empty-msg'>No students yet. Click <strong>Add Student</strong> on the attendance page to get started!</div>";
+            } else {
+                const recent = students.slice(-3).reverse();
+                let html = "";
+
+                for (let i = 0; i < recent.length; i++) {
+                    const s = recent[i];
+                    const att = s.attendance || {};
+                    const status = att[today] || "Not Marked";
+                    let pillClass = "not-marked";
+
+                    if (status === "Present") pillClass = "present";
+                    if (status === "Absent") pillClass = "absent";
+
+                    html += "<div class='latest-item'>";
+                    html += "<div>";
+                    html += "<div class='latest-name'>" + s.namee + "</div>";
+                    html += "<div class='latest-roll'>Roll No: " + s.rollno + "</div>";
+                    html += "</div>";
+                    html += "<span class='status-pill " + pillClass + "'>Today: " + status + "</span>";
+                    html += "</div>";
+                }
+
+                listEl.innerHTML = html;
+            }
+        }
+    </script>
+
+</body>
+</html>
